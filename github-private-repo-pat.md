@@ -42,6 +42,20 @@ Copy the token immediately — GitHub only shows it once.
 git config --global credential.helper store
 ```
 
+### Store the token without typing it each time
+
+Rather than entering username/token at the prompt on every operation, write the
+credential directly to the store file (replace `<your-username>` and `<token>`):
+
+```bash
+printf "https://<your-username>:<token>@github.com\n" > ~/.git-credentials
+chmod 600 ~/.git-credentials
+```
+
+This is a global setting, so every `git push` / `git pull` now authenticates
+automatically with no prompt. When the token is rotated, just re-run the command
+above with the new token.
+
 ## 3. Clone over HTTPS
 
 ```bash
